@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tic-Tac-Toe</title>
+  <link rel="stylesheet" href="CSS/index.css">
+  <link rel="stylesheet" href="CSS/loading.css">
+  <link rel="stylesheet" href="CSS/confetti.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- <script src="JS/clientHelper.js" defer></script> -->
+  <script src="JS/client.js" defer></script>
+</head>
+<body>
+  <nav>
+    <h1>TIC-TAC-TOE</h1>
+    <h1 id="user-name"></h1>
+  </nav>
+  <div class="btn-container" id="btnContainer">
+    <button class="shadow-btn" id="start-btn">Find Opponent</button>
+  </div>
+  <div id="buffer-container" class="buffer-container">
+    <div class="load-3">
+      <div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+        <h1 id="client-message">Finding Opponent...</h1>
+      </div>
+  </div>
+
+  <div class="parent" id='parent'>
+    <div class="players">
+      <div class="player-1" id="player-1">
+        <h1 id="player-1-name">Tony Stank</h1>
+        <span id="player-1-symbol" class="player-1-symbol">X</span>
+      </div>
+      <div class="player-2" id="player-2">
+        <h1 id="player-2-name">Bruce Banner</h1>
+        <span id="player-2-symbol" class="player-2-symbol">O</span>
+      </div>
+    </div>
+    <main class="container">
+      <div class="one" id="one" onclick="insert('one')">
+        <div class="div-content" id="one-content"></div>
+        <svg onclick='moveDice("one","two")' class="right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('one','four')" class="down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="two" id="two" onclick="insert('two')">
+        <div class="div-content" id="two-content"></div>
+
+        <svg onclick="moveDice('two','one')" class="left" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('two','three')" class="right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('two','five')" class="down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="three" id="three" onclick="insert('three')">
+        <div class="div-content" id="three-content"></div>
+
+        <svg onclick="moveDice('three','two')" class="left" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('three','six')" class="down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="four" id="four" onclick="insert('four')">
+        <div class="div-content" id="four-content"></div>
+
+        <svg onclick="moveDice('four','five')" class="right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('four','seven')" class="down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('four','one')" class="up" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="five" id="five" onclick="insert('five')">
+        <div class="div-content" id="five-content"></div>
+
+        <svg onclick="moveDice('five','four')" class="left" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('five','six')" class="right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('five','two')" class="up" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('five','eight')" class="down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="six" id="six" onclick="insert('six')">
+        <div class="div-content" id="six-content"></div>
+
+        <svg onclick="moveDice('six','five')" class="left" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('six','three')" class="up" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('six','nine')" class="down" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="seven" id="seven" onclick="insert('seven')">
+        <div class="div-content" id="seven-content"></div>
+
+        <svg onclick="moveDice('seven','eight')" class="right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('seven','four')" class="up" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="eight" id="eight" onclick="insert('eight')">
+        <div class="div-content" id="eight-content"></div>
+
+
+        <svg onclick="moveDice('eight','seven')" class="left" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('eight','nine')" class="right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('eight','five')" class="up" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+      <div class="nine" id="nine" onclick="insert('nine')">
+        <div class="div-content" id="nine-content"></div>
+
+        <svg onclick="moveDice('nine','eight')" class="left" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+
+        <svg onclick="moveDice('nine','six')" class="up" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </div>
+    </main>
+  </div>
+
+
+  <main id="timer-container" class="timer-container">
+    <div class="timer">
+      <h1>Game Begins in..</h1>
+      <h1 id="timer">5</h1>
+    </div>
+  </main>
+
+  <div id="game-over">
+    <h1 id="game-over-text"></h1>
+  </div>
+
+  <div id="reset-game">
+    <div>
+      <button class="shadow-btn" id="reset-btn">Play Again</button>
+    </div>
+  </div>
+
+  <div class="audio-container">
+    <!-- Losing Game -->
+    <audio controls id="lose-game">
+      <source src="/audio/lose.wav" type="audio/wav">
+    </audio>
+    <audio controls id="btn-click">
+      <source src="/audio/click.mp3" type="audio/mp3">
+    </audio>
+    <!-- Losing Game two -->
+    <audio id="opponent-left" controls>
+      <source src="/audio/notify.mp3" type="audio/mp3">
+    </audio>
+    <!-- MOve Dice -->
+    <audio id="move-dice" controls>
+      <source src="/audio/moveOnBoard.mp3" type="audio/mp3">
+    </audio>
+    <!-- Start Game -->
+    <audio id="start-game-counter" controls>
+      <source src="/audio/start-game.mp3" type="audio/mp3">
+    </audio>
+    <!--  -->
+    <audio id="game-winning-sound" controls>
+      <source src="/audio/winning.wav" type="audio/wav">
+    </audio>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  /* display: grid;
+  width: 100%;
+  height: 100vh;
+  place-items: center; */
+  background: rgba(9,13,40,1);
+}
+
+nav{
+  width: 100%;
+  font-family: 'Bungee Spice', cursive;
+  font-style: italic;
+  height: 80px;
+  background: indigo;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timer-container{
+  width: 100%;
+  height: 100vh;
+  /* background: red; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: 'Bungee Spice', cursive;
+  font-size: 25px;
+  display: none;
+}
+
+nav h1{
+  margin-left: 20px;
+  margin-right: 20px;
+  text-shadow: 5px 3px 2px rgba(0,0,0,0.6);
+}
+
+.btn-container{
+  width: 100%;
+  /* background: red; */
+  height: 250px;
+  display: grid;
+  place-items:center;
+  /* display: none; */
+}
+
+.shadow-btn{
+  appearance: none;
+  background: indigo;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 2px solid indigo;
+  cursor: pointer;
+  font-family: 'Bungee Spice', cursive;
+  color: white;
+  font-size: 18px;
+  transition: 150ms;
+}
+.shadow-btn:hover{
+  box-shadow: 0 0 10px indigo , 0 0 40px indigo, 0 0 80px indigo;
+}
+
+.buffer-container{
+  width: 100%;
+  height: 75vh;
+  display: grid;
+  place-items: center;
+  display: none;
+}
+
+#client-message{
+  font-family: 'Bungee Spice', cursive;
+  font-size: 13px;
+}
+
+.parent{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: ; */
+  align-items: center;
+  /* background: lightgreen; */
+  display: none;
+  padding: 10px 0;
+}
+.players{
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.players div{
+  flex-basis: 350px;
+  background: indigo;
+  border-radius: 5px;
+  padding: 0 8px;
+  font-family: 'Bungee Spice', cursive;
+  display: flex;
+  justify-content: space-between;
+}
+.player-1{
+  box-shadow: 2px 1px 100px 18px indigo;
+}
+
+.player div h1{
+  padding-right: 20px;
+}
+
+.players div span{
+  font-size: 30px;
+  font-family: 'Bungee Spice', cursive;
+}
+
+.container{
+  width: 400px;
+  height: 400px;
+  /* background: green; */
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.container div{
+  width: 135px;
+  height: 135px;
+  /* background: pink; */
+  position: relative;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-family: 'Bungee Spice', cursive;
+  font-size: 50px;
+}
+
+.div-content{
+  width: 100%;
+  height: 100%;
+  /* background: red; */
+}
+
+.container div svg{
+  position: absolute;
+  fill: indigo;
+  width: 30px;
+  height: 50px;
+  opacity: 0.09;
+}
+
+.container div svg:hover{
+  opacity: 1;
+  text-shadow: 5px 3px 2px indigo;
+
+}
+
+.one,.four,.seven,.two,.five,.eight{
+  border-right: 5px solid indigo;
+}
+.one,.two,.three,.four,.five,.six{
+  border-bottom: 5px solid indigo;
+}
+
+
+/*  */
+.right{
+  transform-origin: center;
+  transform: rotate(180deg);
+  right: 1px;
+}
+.down{
+  transform-origin: center;
+  transform: rotate(270deg);
+  bottom: -10px;
+}
+
+.up{
+  transform-origin: center;
+  transform: rotate(90deg);
+  top: -10px;
+}
+
+.left{
+  left:1px;
+}
+
+#game-over{
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  font-family: 'Bungee Spice', cursive;
+  /* background: red; */
+  font-size: 24px;
+  top: 0;
+  left: 0;
+  display: none;
+  text-align: center;
+}
+
+#reset-game{
+  width: 100%;
+  height: 80vh;
+  /* background: red; */
+  position: absolute;
+  display: grid;
+  place-items: center;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+.audio-container{
+  width: 100%;
+  height: 200px;
+  background: red;
+  position: absolute;
+  left: 0;
+  top: 0;
+  place-items: center;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+/* #reset-game div{
+  width: 300px;
+  height: 200px;
+  background: red;
+  display: grid;
+  place-items: center;
+  box-shadow: 2px 1px 100px 18px indigo;
+  background: transparent;
+  z-index: 1;
+} */
+
+
+/* Making things responsive */
+@media screen and (max-width: 400px)
+{
+  nav h1{
+    font-size: 18px !important;
+  }
+}
+
+@media screen and (max-width: 800px)
+{
+  .players{
+    margin-bottom: 40px;
+  }
+  .players div{
+    flex-basis: 250px;
+  }
+  .players div h1,.players div span{
+    font-size: 23px !important;
+    padding: 4px 0;
+  }
+}
+
+@media screen and (max-width: 600px)
+{
+  .players div{
+    flex-basis: 180px;
+  }
+  .players div h1,.players div span{
+    font-size: 15px !important;
+    padding: 4px 0;
+  }
+}
+@media screen and (max-width: 450px)
+{
+  .players {
+    flex-direction: column;
+    align-items: center;
+  }
+  .players div{
+    flex-basis: auto;
+    margin: 10px 0;
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 500px)
+{
+  .container{
+    width: 250px;
+    height: 250px;
+  }
+  .container div{
+    width: 80px;
+    height: 80px;
+  }
+  .container div svg{
+    width: 18px;
+    height: 18px;
+    opacity: .3;
+  }
+
+  .container .div-content{
+    font-size: 18px;
+  }
+
+  .up{
+    top: -1px;
+  }
+
+  .down{
+    bottom: -1px;
+  }
+}
+
+@media screen and (max-width: 650px)t
+{
+  #game-over h1{
+    font-size: 28px !important;
+  }
+}
+@media screen and (max-width: 500px)
+{
+  #game-over h1{
+    font-size: 23px !important;
+  }
+}

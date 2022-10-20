@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  /* display: grid;
+  width: 100%;
+  height: 100vh;
+  place-items: center; */
+  background: rgba(9,13,40,1);
+}
+
+nav{
+  width: 100%;
+  font-family: 'Bungee Spice', cursive;
+  font-style: italic;
+  height: 80px;
+  background: indigo;
+  display: flex;
+  align-items: center;
+}
+
+nav h1{
+  margin-left: 20px;
+  text-shadow: 5px 3px 2px rgba(0,0,0,0.6);
+}
+
+.parent{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: ; */
+  align-items: center;
+  /* background: lightgreen; */
+  padding: 10px 0;
+}
+.players{
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.players div{
+  flex-basis: 350px;
+  background: indigo;
+  border-radius: 5px;
+  padding: 0 8px;
+  font-family: 'Bungee Spice', cursive;
+  display: flex;
+  justify-content: space-between;
+}
+.player-1{
+  box-shadow: 2px 1px 100px 18px indigo;
+}
+
+.player-2{
+
+}
+
+.player div h1{
+  padding-right: 20px;
+}
+
+.players div span{
+  font-size: 30px;
+  font-family: 'Bungee Spice', cursive;
+}
+
+.container{
+  width: 400px;
+  height: 400px;
+  /* background: green; */
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.container div{
+  width: 135px;
+  height: 135px;
+  /* background: pink; */
+  position: relative;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-family: 'Bungee Spice', cursive;
+  font-size: 50px;
+}
+
+.div-content{
+  width: 100%;
+  height: 100%;
+  /* background: red; */
+}
+
+.container div svg{
+  position: absolute;
+  fill: indigo;
+  width: 30px;
+  height: 50px;
+  opacity: 0.09;
+}
+
+.container div svg:hover{
+  opacity: 1;
+  text-shadow: 5px 3px 2px indigo;
+
+}
+
+.one,.four,.seven,.two,.five,.eight{
+  border-right: 5px solid indigo;
+}
+.one,.two,.three,.four,.five,.six{
+  border-bottom: 5px solid indigo;
+}
+
+
+/*  */
+.right{
+  transform-origin: center;
+  transform: rotate(180deg);
+  right: 1px;
+}
+.down{
+  transform-origin: center;
+  transform: rotate(270deg);
+  bottom: -10px;
+}
+
+.up{
+  transform-origin: center;
+  transform: rotate(90deg);
+  top: -10px;
+}
+
+.left{
+  left:1px;
+}
