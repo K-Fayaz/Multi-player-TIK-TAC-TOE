@@ -123,7 +123,7 @@ io.on("connection", async (socket)=>{
 })
 
 
-const PORT = 8080;
+const PORT = 80;
 server.listen(PORT,()=>{
   console.log(`Listening to the PORT ${PORT}`);
 })
